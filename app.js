@@ -77,16 +77,16 @@ let majorContainer = {
   },
   kids: {
     headImage:
-      "https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
-    optionTags: ["Boots", "Flannels", "Rugged Wear", "Shaving Cream"],
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSt2AxcMtXRGXZplATAMNgGZuMYsQNrrs64Ml6Uzgwu830uRWgdsYwoolJy_dPDhRtKiVQ&usqp=CAU",
+    optionTags: ["Shirts", "Pants", "Shoes", "Coats"],
     productImages: [
       {
         name: "Sneakers",
         pic: "https://images.unsplash.com/photo-1527010154944-f2241763d806?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=688&q=80",
       },
       {
-        name: "Boots",
-        pic: "https://images.unsplash.com/photo-1638247025967-b4e38f787b76?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=735&q=80",
+        name: "Swimwear",
+        pic: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRocde2MIMske_rQLNeNq370sDRUhR2JlLaw&usqp=CAU",
       },
       {
         name: "Flannels",
@@ -105,8 +105,7 @@ let majorContainer = {
         pic: "https://images.unsplash.com/photo-1521119989659-a83eee488004?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=723&q=80",
       },
     ],
-    textDescription:
-      "Update your everyday wardrobe with our collection of men’s pants. Discover tailored suit pants for work or special occasions, as well as comfier sweatpants and joggers for downtime. Mix up your weekend look and swap the jeans for a pair of cargo pants or chinos. Browse a range of colors, from neutral blacks and grays to brighter shades and prints. Find everything from soft breathable cotton to functional track pants and luxe velvet dress pants.",
+    textDescription: "Kids dummy text.",
     lowImage:
       "https://images.unsplash.com/photo-1516826957135-700dedea698c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80",
   },
@@ -141,6 +140,8 @@ const changeTopPic = (type) => {
     newimage.setAttribute("src", majorContainer.mens.headImage);
   } else if (type === "women") {
     newimage.setAttribute("src", majorContainer.womens.headImage);
+  } else if (type === "kids") {
+    newimage.setAttribute("src", majorContainer.kids.headImage);
   }
   newimage.setAttribute("class", "topPic");
   // replaceWith current
@@ -180,6 +181,8 @@ const changePolaroid = (type) => {
     pic.setAttribute("src", majorContainer.mens.lowImage);
   } else if (type === "women") {
     pic.setAttribute("src", majorContainer.womens.lowImage);
+  } else {
+    pic.setAttribute("src", majorContainer.kids.lowImage);
   }
 };
 
@@ -198,6 +201,13 @@ const product = (type) => {
       shopBox.setAttribute("class", "product");
       productBox.append(shopBox);
     });
+  } else {
+    majorContainer.kids.productImages.forEach((obj) => {
+      let shopBox = document.createElement("img");
+      shopBox.setAttribute("src", obj.pic);
+      shopBox.setAttribute("class", "product");
+      productBox.append(shopBox);
+    });
   }
 };
 
@@ -206,5 +216,7 @@ const changeTextBox = (type) => {
     textBox.innerHTML = majorContainer.mens.textDescription;
   } else if (type === "women") {
     textBox.innerHTML = majorContainer.womens.textDescription;
+  } else if (type === "kids") {
+    textBox.innerHTML = majorContainer.kids.textDescription;
   }
 };
