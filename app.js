@@ -42,12 +42,12 @@ let majorContainer = {
   },
   womens: {
     headImage:
-      "https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
-    optionTags: ["Boots", "Flannels", "Rugged Wear", "Shaving Cream"],
+      "https://media.istockphoto.com/id/1208148708/photo/polka-dot-summer-brown-dress-suede-wedge-sandals-eco-straw-tote-bag-cosmetics-on-a-light.jpg?s=612x612&w=0&k=20&c=9Y135GYKHLlPotGIfynBbMPhXNbYeuDuFzreL_nfDE8=",
+    optionTags: ["Dresses", "Shirts", "High heels", "Skirts"],
     productImages: [
       {
-        name: "Sneakers",
-        pic: "https://images.unsplash.com/photo-1527010154944-f2241763d806?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=688&q=80",
+        name: "Dress",
+        pic: "https://www.nautica.com/on/demandware.static/-/Sites-nau-Library/default/dw2b9b97c9/2023/dept-pages/womens/020823/0208_MB_Dresses-min.jpg",
       },
       {
         name: "Boots",
@@ -123,31 +123,59 @@ let textBox = document.querySelector(".textContainer");
 const clearAll = () => {
   option.replaceChildren();
   productBox.replaceChildren();
+  mainImage.replaceChildren();
 };
-const changeAll = () => {
+const changeAll = (type) => {
   clearAll();
-  changeTopPic();
-  changeOptions();
+  changeTopPic(type);
+  changeOptions(type);
   product();
+  changePolaroid();
   changeTextBox();
 };
-const changeTopPic = () => {
+const changeTopPic = (type) => {
   // createImage
   let newimage = document.createElement("img");
-  newimage.setAttribute("src", majorContainer.mens.headImage);
+  if (type === "men") {
+    newimage.setAttribute("src", majorContainer.mens.headImage);
+  } else if (type === "women") {
+    newimage.setAttribute("src", majorContainer.womens.headImage);
+  }
   newimage.setAttribute("class", "topPic");
   // replaceWith current
-  mainImage.replaceWith(newimage);
+  mainImage.append(newimage);
 };
 
-const changeOptions = () => {
-  majorContainer.mens.optionTags.forEach((tagname) => {
-    // CREATE ELE
-    let txt = document.createElement("div");
-    txt.innerHTML = tagname;
-    // REPLACE ELEMENT WITH NEW ELEMENT
-    option.append(txt);
-  });
+const changeOptions = (type) => {
+  if (type === "men") {
+    majorContainer.mens.optionTags.forEach((tagname) => {
+      // CREATE ELE
+      let txt = document.createElement("div");
+      txt.innerHTML = tagname;
+      // REPLACE ELEMENT WITH NEW ELEMENT
+      option.append(txt);
+    });
+  } else if (type === "women") {
+    majorContainer.womens.optionTags.forEach((tagname) => {
+      // CREATE ELE
+      let txt = document.createElement("div");
+      txt.innerHTML = tagname;
+      // REPLACE ELEMENT WITH NEW ELEMENT
+      option.append(txt);
+    });
+  } else {
+    majorContainer.kids.optionTags.forEach((tagname) => {
+      // CREATE ELE
+      let txt = document.createElement("div");
+      txt.innerHTML = tagname;
+      // REPLACE ELEMENT WITH NEW ELEMENT
+      option.append(txt);
+    });
+  }
+};
+
+const changePolaroid = () => {
+  pic.setAttribute("src", majorContainer.mens.lowImage);
 };
 
 const product = () => {
