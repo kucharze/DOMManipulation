@@ -43,37 +43,37 @@ let majorContainer = {
   womens: {
     headImage:
       "https://media.istockphoto.com/id/1208148708/photo/polka-dot-summer-brown-dress-suede-wedge-sandals-eco-straw-tote-bag-cosmetics-on-a-light.jpg?s=612x612&w=0&k=20&c=9Y135GYKHLlPotGIfynBbMPhXNbYeuDuFzreL_nfDE8=",
-    optionTags: ["Dresses", "Shirts", "High heels", "Skirts"],
+    optionTags: ["Dresses", "Shirts", "Shoes", "Jeans"],
     productImages: [
       {
         name: "Dress",
         pic: "https://www.nautica.com/on/demandware.static/-/Sites-nau-Library/default/dw2b9b97c9/2023/dept-pages/womens/020823/0208_MB_Dresses-min.jpg",
       },
       {
-        name: "Boots",
-        pic: "https://images.unsplash.com/photo-1638247025967-b4e38f787b76?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=735&q=80",
+        name: "Shoes",
+        pic: "https://www.health.com/thmb/kEe4JSZHS-jZq6ndMXuN70hrEIM=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/ht-best-wide-width-shoes-for-women-tout-f31017bc87444cb097ecd69d4b7b8619.jpg",
       },
       {
-        name: "Flannels",
-        pic: "https://images.unsplash.com/photo-1638718297700-e828368a54e2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80",
+        name: "Jeans",
+        pic: "https://oldnavy.gap.com/Asset_Archive/ONWeb/content/0029/745/704/assets/230501_12-M5101_W_DP_Sale.jpg",
       },
       {
-        name: "Scarves",
-        pic: "https://images.unsplash.com/photo-1520903920243-00d872a2d1c9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80",
+        name: "Skirts",
+        pic: "https://40plusstyle.com/wp-content/uploads/2020/05/summerskirts-1.jpg",
       },
       {
-        name: "Hoodies",
-        pic: "https://images.unsplash.com/photo-1509942774463-acf339cf87d5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80",
+        name: "Summer Dress",
+        pic: "https://www.whitehouseblackmarket.com/Product_Images/570346324_5090.jpg?imgPolicy=productMed",
       },
       {
-        name: "Hats",
-        pic: "https://images.unsplash.com/photo-1521119989659-a83eee488004?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=723&q=80",
+        name: "Tops",
+        pic: "https://images.contentstack.io/v3/assets/blt95bd61b348310fa3/bltbddfe53444370df3/64776721ae5aa2d7144cbcb0/M-6.04_Hero.jpg?format=pjpg&auto=webp&quality=60&fit=bounds",
       },
     ],
     textDescription:
-      "Update your everyday wardrobe with our collection of men’s pants. Discover tailored suit pants for work or special occasions, as well as comfier sweatpants and joggers for downtime. Mix up your weekend look and swap the jeans for a pair of cargo pants or chinos. Browse a range of colors, from neutral blacks and grays to brighter shades and prints. Find everything from soft breathable cotton to functional track pants and luxe velvet dress pants.",
+      "Women's Clothing Sale Boasts an Unbeatable Selection. Whether you need a top that's ideal for a sunny day spent outdoors or sleeveless when working up a sweat, you'll feed what you want at the prices you like during our current women's clothing sale. ",
     lowImage:
-      "https://images.unsplash.com/photo-1516826957135-700dedea698c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80",
+      "https://media.istockphoto.com/id/1271796113/photo/women-is-holding-handbag-near-luxury-car.jpg?s=612x612&w=0&k=20&c=-jtXLmexNgRa-eKqA1X8UJ8QYWhW7XgDiWNmzuuCHmM=",
   },
   kids: {
     headImage:
@@ -125,13 +125,14 @@ const clearAll = () => {
   productBox.replaceChildren();
   mainImage.replaceChildren();
 };
+
 const changeAll = (type) => {
   clearAll();
   changeTopPic(type);
   changeOptions(type);
-  product();
-  changePolaroid();
-  changeTextBox();
+  product(type);
+  changePolaroid(type);
+  changeTextBox(type);
 };
 const changeTopPic = (type) => {
   // createImage
@@ -174,19 +175,36 @@ const changeOptions = (type) => {
   }
 };
 
-const changePolaroid = () => {
-  pic.setAttribute("src", majorContainer.mens.lowImage);
+const changePolaroid = (type) => {
+  if (type === "men") {
+    pic.setAttribute("src", majorContainer.mens.lowImage);
+  } else if (type === "women") {
+    pic.setAttribute("src", majorContainer.womens.lowImage);
+  }
 };
 
-const product = () => {
-  majorContainer.mens.productImages.forEach((obj) => {
-    let shopBox = document.createElement("img");
-    shopBox.setAttribute("src", obj.pic);
-    shopBox.setAttribute("class", "product");
-    productBox.append(shopBox);
-  });
+const product = (type) => {
+  if (type === "men") {
+    majorContainer.mens.productImages.forEach((obj) => {
+      let shopBox = document.createElement("img");
+      shopBox.setAttribute("src", obj.pic);
+      shopBox.setAttribute("class", "product");
+      productBox.append(shopBox);
+    });
+  } else if (type === "women") {
+    majorContainer.womens.productImages.forEach((obj) => {
+      let shopBox = document.createElement("img");
+      shopBox.setAttribute("src", obj.pic);
+      shopBox.setAttribute("class", "product");
+      productBox.append(shopBox);
+    });
+  }
 };
 
-const changeTextBox = () => {
-  textBox.innerHTML = majorContainer.mens.textDescription;
+const changeTextBox = (type) => {
+  if (type === "men") {
+    textBox.innerHTML = majorContainer.mens.textDescription;
+  } else if (type === "women") {
+    textBox.innerHTML = majorContainer.womens.textDescription;
+  }
 };
