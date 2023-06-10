@@ -48,7 +48,7 @@
 .displayMain {
   border: solid peru;
   border-width: 0.2px;
-  height: 340px;
+  height: 440px;
   margin: 1em;
   display: flex;
   justify-content: space-between;
@@ -75,7 +75,11 @@
 }
 .leftImage {
   border: solid grey;
-  width: 30%;
+  width: 32%;
+}
+.polaroid {
+  height: 100%;
+  width: 100%;
 }
 .textContainer {
   border: solid black;
