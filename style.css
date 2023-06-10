@@ -80,4 +80,6 @@
 .textContainer {
   border: solid black;
   width: 60%;
+  padding: 20px;
+  font-size: 25px;
 }
