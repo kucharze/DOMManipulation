@@ -35,6 +35,7 @@ let majorContainer = {
         pic: "https://images.unsplash.com/photo-1521119989659-a83eee488004?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=723&q=80",
       },
     ],
+    textTitle: "Mens' Clothing",
     textDescription:
       "Update your everyday wardrobe with our collection of men’s pants. Discover tailored suit pants for work or special occasions, as well as comfier sweatpants and joggers for downtime. Mix up your weekend look and swap the jeans for a pair of cargo pants or chinos. Browse a range of colors, from neutral blacks and grays to brighter shades and prints. Find everything from soft breathable cotton to functional track pants and luxe velvet dress pants.",
     lowImage:
@@ -70,6 +71,7 @@ let majorContainer = {
         pic: "https://images.contentstack.io/v3/assets/blt95bd61b348310fa3/bltbddfe53444370df3/64776721ae5aa2d7144cbcb0/M-6.04_Hero.jpg?format=pjpg&auto=webp&quality=60&fit=bounds",
       },
     ],
+    textTitle: "Womens' Clothing",
     textDescription:
       "Women's Clothing Sale Boasts an Unbeatable Selection. Whether you need a top that's ideal for a sunny day spent outdoors or sleeveless when working up a sweat, you'll feed what you want at the prices you like during our current women's clothing sale. ",
     lowImage:
@@ -105,8 +107,9 @@ let majorContainer = {
         pic: "https://media.istockphoto.com/id/473707118/photo/weve-got-the-moves-likes-jagger.jpg?s=612x612&w=0&k=20&c=HHsnzHp256n8XDwwjztBYdLz7lyUAEmWLaD2B8rZiQ4=",
       },
     ],
+    textTitle: "Kids' Clothing",
     textDescription:
-      "Upgrade your little one's wardrobe with a variety of boys' activewear options. We have many of your favorite brands.",
+      "Refill on their everyday essentials with our kids' clothes. Upgrade your little one's wardrobe with a variety of kids' activewear options. We have many of your favorite brands for different products. Look into your favorite shirts, pants, and swimwear.",
     lowImage:
       "https://media.istockphoto.com/id/875614000/photo/chilling-before-class-starts.jpg?s=612x612&w=0&k=20&c=FU7NmpZ1K3TeCkcZ7WU98BlZc7m2zN9k0siwif8D2ow=",
   },
@@ -118,9 +121,11 @@ let option = document.querySelector(".options");
 let miniOp = document.querySelectorAll(".choice");
 let productBox = document.querySelector(".productContainer");
 let pic = document.querySelector(".polaroid");
-let textBox = document.querySelector(".textContainer");
+let textBox = document.querySelector(".textDescription");
+let title = document.querySelector(".textTitle");
 
 const clearAll = () => {
+  //Remove child items that don't get replaced
   option.replaceChildren();
   productBox.replaceChildren();
   mainImage.replaceChildren();
@@ -131,8 +136,10 @@ const changeAll = (type) => {
   changeTopPic(type);
   changeOptions(type);
   product(type);
+
   changePolaroid(type);
   changeTextBox(type);
+  chaneDescriptionTitle(type);
 };
 const changeTopPic = (type) => {
   // createImage
@@ -184,6 +191,16 @@ const changePolaroid = (type) => {
     pic.setAttribute("src", majorContainer.womens.lowImage);
   } else {
     pic.setAttribute("src", majorContainer.kids.lowImage);
+  }
+};
+
+const chaneDescriptionTitle = (type) => {
+  if (type === "men") {
+    title.innerHTML = majorContainer.mens.textTitle;
+  } else if (type === "women") {
+    title.innerHTML = majorContainer.womens.textTitle;
+  } else {
+    title.innerHTML = majorContainer.kids.textTitle;
   }
 };
 
